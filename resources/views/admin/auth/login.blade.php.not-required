@@ -1,0 +1,40 @@
+@extends('layouts.admin.login')
+
+@section('content')
+<h2 class="lgn-hd">SOBEL Control Panel</h2>
+
+<form class="login-form" method="POST" action="{{ route('admin.login.submit') }}" autocomplete="off">
+  {{ csrf_field() }}
+  <div class="imgcontainer">
+    <img src="{{ asset('/images/admin/login-icon.png')}}" alt="Avatar" class="avatar">
+  </div>
+
+  <div class="container">
+    <label for="email"><b>Email</b></label>
+    <input type="text" name="email" value="{{ old('email') }}" autofocus>
+    @if ($errors->has('email'))
+    <span class="help-block">
+        <strong>{{ $errors->first('email') }}</strong>
+    </span>
+    @endif 
+
+    <label for="psw"><b>Password</b></label>
+    <input id="password" type="password" name="password">                 
+    @if ($errors->has('password'))
+    <span class="help-block">
+        <strong>{{ $errors->first('password') }}</strong>
+    </span>
+    @endif
+        
+    <button type="submit">Login</button>
+    <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>
+  </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+    <!-- <button type="button" class="cancelbtn">Cancel</button> -->
+    <span class="psw">Forgot <a href="#">password?</a></span>
+  </div>
+</form>
+@endsection
